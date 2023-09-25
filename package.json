@@ -1,0 +1,23 @@
+{
+  "name": "find_player_two_api",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch ./src/server.ts",
+    "start": "node ./build/server.js",
+    "build": "tsup ./src/ --out-dir ./build/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^4.23.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.6.5",
+    "tsup": "^7.2.0",
+    "tsx": "^3.13.0",
+    "typescript": "^5.2.2"
+  }
+}
