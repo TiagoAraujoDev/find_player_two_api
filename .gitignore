@@ -7,3 +7,6 @@ node_modules
 
 # build
 build
+
+# Development layout
+zellij_layout.kdl
