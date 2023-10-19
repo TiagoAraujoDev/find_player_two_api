@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
+  "engine": {
+    "node": "18.6.0"
+  },
   "scripts": {
     "dev": "tsx watch ./src/server.ts",
     "start": "node ./build/server.js",
