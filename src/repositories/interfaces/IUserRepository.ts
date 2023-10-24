@@ -1,14 +1,7 @@
-import { ICreateUserRequestProps } from "~/useCases/createUserUseCase";
-
-type User = {
-  name: string;
-  age: number;
-  country: string;
-  description: string;
-};
+import { Prisma, User } from "@prisma/client";
 
 interface IUserRepository {
-  create(props: ICreateUserRequestProps): Promise<User>;
+  create(props: Prisma.UserCreateInput): Promise<User>;
 }
 
-export { IUserRepository, User };
+export { IUserRepository };
