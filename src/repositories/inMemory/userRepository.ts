@@ -1,6 +1,9 @@
-import { IRequestProps } from "~/useCases/createUserUseCase";
+import { User } from "@prisma/client";
+import { randomUUID as uuid } from "node:crypto";
 
-import { IUserRepository, User } from "../interfaces/IUserRepository";
+import { ICreateUserRequestProps } from "~/useCases/createUserUseCase";
+
+import { IUserRepository } from "../interfaces/IUserRepository";
 
 class UserRepositoryInMemory implements IUserRepository {
   private users: User[];
@@ -9,9 +12,15 @@ class UserRepositoryInMemory implements IUserRepository {
     this.users = [];
   }
 
-  async create({ name, age, country, description }: IRequestProps): Promise<User> {
+  async create({
+    username,
+    age,
+    country,
+    description,
+  }: ICreateUserRequestProps): Promise<User> {
     const user: User = {
-      name,
+      id: uuid(),
+      username,
       age,
       country,
       description,
