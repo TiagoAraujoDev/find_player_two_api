@@ -11,7 +11,7 @@ class UserRepositoryInMemory implements IUserRepository {
   constructor() {
     this.users = [];
   }
-
+  
   async create({
     username,
     age,
@@ -30,6 +30,15 @@ class UserRepositoryInMemory implements IUserRepository {
 
     return user;
   }
+  
+  async findByUsername(username: string): Promise<User | null> {
+    const user = this.users.find((user) => user.username === username);
+
+    if (!user) return null;
+
+    return user;
+  }
+
 }
 
 export { UserRepositoryInMemory };

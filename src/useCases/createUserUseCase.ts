@@ -2,6 +2,8 @@ import { User } from "@prisma/client";
 
 import { IUserRepository } from "~/repositories/interfaces/IUserRepository";
 
+import { UsernameAlreadyRegisterError } from "./error/UsernameAlreadyRegister";
+
 export interface ICreateUserRequestProps {
   username: string;
   description: string;
@@ -22,6 +24,12 @@ class CreateUserUseCase {
     country,
     description,
   }: ICreateUserRequestProps): Promise<ICreateUserResponseProps> {
+    const userAlreadyExist = await this.userRepositor.findByUsername(username);
+
+    if (userAlreadyExist) {
+      throw new UsernameAlreadyRegisterError();
+    }
+
     const user = await this.userRepositor.create({
       username,
       age,

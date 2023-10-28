@@ -1,5 +1,5 @@
 import { Prisma } from "@prisma/client";
-import { beforeAll, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { UserRepositoryInMemory } from "~/repositories/inMemory/userRepository";
 import { IUserRepository } from "~/repositories/interfaces/IUserRepository";
@@ -11,27 +11,26 @@ let sut: CreateUserUseCase;
 let userRepository: IUserRepository;
 
 describe("Create user", () => {
-  beforeAll(() => {
+  beforeEach(() => {
     userRepository = new UserRepositoryInMemory();
     sut = new CreateUserUseCase(userRepository);
   });
 
   it("should be able to create a new user", async () => {
     const userMock: Prisma.UserCreateInput = {
-      username: "Jonh Doe",
+      username: "Jonh_Doe",
       age: 30,
       country: "USA",
       description: "Nice guy to play FIFA!",
     };
     const { user } = await sut.execute(userMock);
 
-    console.log(user);
     expect(user.username).toEqual(expect.stringMatching("Jonh Doe"));
   });
 
   it("should not be able to create a new user with an existing username", async () => {
     const user_1: Prisma.UserCreateInput = {
-      username: "Jonh Doe",
+      username: "Jonh_Doe",
       age: 30,
       country: "USA",
       description: "Nice guy to play FIFA!",
