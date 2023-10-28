@@ -25,7 +25,7 @@ describe("Create user", () => {
     };
     const { user } = await sut.execute(userMock);
 
-    expect(user.username).toEqual(expect.stringMatching("Jonh Doe"));
+    expect(user.username).toEqual(expect.stringMatching("Jonh_Doe"));
   });
 
   it("should not be able to create a new user with an existing username", async () => {
@@ -37,7 +37,7 @@ describe("Create user", () => {
     };
 
     const user_2: Prisma.UserCreateInput = {
-      username: "Jonh Doe",
+      username: "Jonh_Doe",
       age: 20,
       country: "Brasil",
       description: "Other guy that rages",
