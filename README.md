@@ -2,6 +2,30 @@
 
 A web server to save and process all the features from FP2 application
 
+## Getting started
+
+To run the dev environment you'll need to set some environment variables on .env
+`use .env.example as a boilerplate`
+
+First step:
+
+```sh
+# check if you have docker and docker compose installed in your machine with:
+# docker -v && docker compose -v
+
+docker compose up -d
+```
+This command will start the database and the application
+
+### Prisma
+
+As I'm using prisma ORM all the prisma cli commands need to be executed inside the container running the application 
+
+e.g.
+```sh
+docker compose exec npx prisma migrate dev
+```
+
 ## Motivation
 
 I want to build an application, so you could find someone to play your favorite games no 
