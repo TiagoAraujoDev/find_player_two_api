@@ -7,12 +7,13 @@ import { makeCreateUserUseCase } from "~/useCases/factory/makeCreateUserUseCase"
 async function create(request: FastifyRequest, reply: FastifyReply) {
   const bodySchema = z.object({
     username: z.string(),
+    password: z.string(),
     age: z.coerce.number(),
     country: z.string(),
     description: z.string(),
   });
 
-  const { username, age, country, description } = bodySchema.parse(
+  const { username, password, age, country, description } = bodySchema.parse(
     request.body,
   );
 
@@ -20,6 +21,7 @@ async function create(request: FastifyRequest, reply: FastifyReply) {
     const createUserUseCase = makeCreateUserUseCase();
     const user = await createUserUseCase.execute({
       username,
+      password,
       age,
       country,
       description,

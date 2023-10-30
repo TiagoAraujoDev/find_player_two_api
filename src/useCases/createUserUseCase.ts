@@ -6,6 +6,7 @@ import { UsernameAlreadyRegisterError } from "./error/UsernameAlreadyRegister";
 
 export interface ICreateUserRequestProps {
   username: string;
+  password: string;
   description: string;
   country: string;
   age: number;
@@ -20,6 +21,7 @@ class CreateUserUseCase {
 
   async execute({
     username,
+    password,
     age,
     country,
     description,
@@ -32,6 +34,7 @@ class CreateUserUseCase {
 
     const user = await this.userRepositor.create({
       username,
+      password,
       age,
       country,
       description,

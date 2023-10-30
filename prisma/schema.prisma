@@ -6,14 +6,19 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id          String @id @default(uuid())
-  username    String @unique
+  id          String   @id @default(uuid())
+  username    String   @unique
+  password    String
   age         Int
   country     String
   description String
+  plataforms  String[]
+  games       String[]
+
+  @@map("users")
 }
