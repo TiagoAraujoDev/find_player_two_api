@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  
+  postgres:
+    image: postgres
+    container_name: fp2-db
+    restart: always
+    environment:
+      POSTGRES_USER: fp2
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: fp2db
+    volumes:
+      - pgdata:/data/postgres
+    ports:
+      - "5432:5432"
+
+  fp2-app:
+    build: .
+    container_name: fp2-app
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    links:
+      - postgres
+    depends_on:
+      - postgres
+
+volumes:
+  pgdata:
+    driver: local
