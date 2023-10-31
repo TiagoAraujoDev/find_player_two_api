@@ -1,13 +1,17 @@
 # Find Player Two API
 
-A web server to save and process all the features from FP2 application
+A web server to save and process all the data for FP2 client
 
 ## Getting started
 
-To run the dev environment you'll need to set some environment variables on .env
-`use .env.example as a boilerplate`
+#### First step:
 
-First step:
+To run the dev environment you'll need to set some environment variables on `.env`. You can use `.env.example` as a boilerplate
+
+
+#### Second step:
+
+Start the containers with the application and database. There's a `docker-compose.yml` that orchestry all the containers. So the command bellow will start all the containers detached `-d`.
 
 ```sh
 # check if you have docker and docker compose installed in your machine with:
@@ -15,7 +19,6 @@ First step:
 
 docker compose up -d
 ```
-This command will start the database and the application
 
 ### Prisma
 
@@ -28,19 +31,21 @@ docker compose exec npx prisma migrate dev
 
 ## Motivation
 
-I want to build an application, so you could find someone to play your favorite games no 
-matter what plataform you're in.
+I want to build an application, so you could find someone to play your favorite games no matter what plataform you're in.
 
 ## Endpoints
 
 - GET
-    - /users
-    list all the users
+    - `[/users/?filters]` -> list all the users (no sensible information)
+    - `[/users/id]` -> fetch a specific user (all information)
 - POST
-    - /users
-    create an user
+    - `[/users]` -> Create an user 
+    - `[/users/auth]` -> Authenticate an user 
+    - `[/match/user/:id]` -> Send a request to play
 - DELETE
+    - `[/users]` -> Delete an user
 - PUT
+    - `[/info]` -> Update user information (e.g. plataforms, games, country ...)
 
 ## 
 
